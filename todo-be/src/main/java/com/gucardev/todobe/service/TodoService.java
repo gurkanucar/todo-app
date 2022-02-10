@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-
 @Service
 @RequiredArgsConstructor
 public class TodoService {
@@ -20,17 +19,17 @@ public class TodoService {
 
     public List<Todo> getAllTodosByUserID(Long userID) {
         userService.checkUser(userID);
-        return todoRepository.findAllByUserId(userID);
+        return sort(todoRepository.findAllByUserId(userID));
     }
 
     public List<Todo> getAllCompletedTodosByUserID(Long userID) {
         userService.checkUser(userID);
-        return todoRepository.findAllByUserIdAndCompleted(userID, true);
+        return sort(todoRepository.findAllByUserIdAndCompleted(userID, true));
     }
 
     public List<Todo> getAllNotCompletedTodosByUserID(Long userID) {
         userService.checkUser(userID);
-        return todoRepository.findAllByUserIdAndCompleted(userID, false);
+        return sort(todoRepository.findAllByUserIdAndCompleted(userID, false));
     }
 
     public Todo createTodo(Todo todo) {
@@ -55,6 +54,13 @@ public class TodoService {
     public Todo getByID(Long id) {
         return todoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("todo not found!"));
+    }
+
+    private List<Todo> sort(List<Todo> todos) {
+        return todos.stream()
+                .sorted((t1, t2) -> t1.getPriority().getValue() < t2.getPriority().getValue() ? -1 : 0)
+                .sorted(Comparator.comparing(Todo::isCompleted))
+                .collect(Collectors.toList());
     }
 
 }
