@@ -7,7 +7,7 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { BrowserRouter } from 'react-router-dom';
 
 const client = new ApolloClient({
-  uri: "https://graphql-simple-todo-app.herokuapp.com/api/graphql",
+  uri: "http://localhost:8080/api/graphql",
   cache: new InMemoryCache({
     addTypename: false,
   }),
