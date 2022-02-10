@@ -1,5 +1,6 @@
 package com.gucardev.todobe.service;
 
+import com.gucardev.todobe.exception.UserNotFoundException;
 import com.gucardev.todobe.model.User;
 import com.gucardev.todobe.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,12 +18,12 @@ public class UserService {
 
     public User getUserByID(Long id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("user not found!"));
+                .orElseThrow(() -> new UserNotFoundException("user not found!"));
     }
 
     public User getUserByUsername(String username) {
         return userRepository.findUserByUsername(username)
-                .orElseThrow(() -> new RuntimeException("user not found!"));
+                .orElseThrow(() -> new UserNotFoundException("user not found!"));
     }
 
     void checkUser(Long id) {
