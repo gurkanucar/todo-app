@@ -20,6 +20,11 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("user not found!"));
     }
 
+    public User getUserByUsername(String username) {
+        return userRepository.findUserByUsername(username)
+                .orElseThrow(() -> new RuntimeException("user not found!"));
+    }
+
     void checkUser(Long id) {
         getUserByID(id);
     }

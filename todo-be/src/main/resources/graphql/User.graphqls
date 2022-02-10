@@ -15,6 +15,7 @@ input UserInput{
 
 extend type Query {
     getUser(id: ID!) : UserDto
+    getUserByUsername(username: String!) : UserDto
 }
 
 extend type Mutation {

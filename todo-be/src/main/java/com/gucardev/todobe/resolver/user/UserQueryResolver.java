@@ -19,4 +19,8 @@ public class UserQueryResolver implements GraphQLQueryResolver {
         return modelMapper.map(userService.getUserByID(id), UserDto.class);
     }
 
+    public UserDto getUserByUsername(String username) {
+        return modelMapper.map(userService.getUserByUsername(username), UserDto.class);
+    }
+
 }
