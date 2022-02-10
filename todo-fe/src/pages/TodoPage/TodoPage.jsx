@@ -7,6 +7,7 @@ import { GET_ALL_TODOS } from "../../queries/Query";
 import { DELETE_TODO, UPDATE_TODO } from "../../queries/Mutation";
 import "./TodoPage.css";
 import { useNavigate } from "react-router";
+import userObject from "../../userObject";
 
 const TodoPage = () => {
   const navigate = useNavigate();
@@ -20,9 +21,15 @@ const TodoPage = () => {
   const [todos, setTodos] = useState([]);
   const [filteredTodos, setFilteredTodos] = useState([]);
 
+  useEffect(() => {
+    if (userObject.id === undefined) {
+      navigate("/");
+    }
+  }, []);
+
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
-      navigate("/todo", {
+      navigate("/edit", {
         state: {
           todo: {
             task: searched,
@@ -34,7 +41,7 @@ const TodoPage = () => {
 
   const sendQuery = () => {
     getAllTodos({
-      variables: { id: 1, completed: filterType },
+      variables: { id: userObject?.id, completed: filterType },
     });
   };
 
@@ -70,7 +77,7 @@ const TodoPage = () => {
   const onEditClick = (e) => {
     const todo = todos.find((x) => x.id === e);
     console.log(todo);
-    navigate("/todo", {
+    navigate("/edit", {
       state: {
         todo: todo,
       },
@@ -128,7 +135,6 @@ const TodoPage = () => {
           </div>
         );
       })}
-
     </div>
   );
 };

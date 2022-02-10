@@ -4,6 +4,7 @@ import "./TodoEditPage.css";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { CREATE_TODO, DELETE_TODO, UPDATE_TODO } from "../../queries/Mutation";
 import { useMutation } from "@apollo/client";
+import userObject from "../../userObject";
 
 const TodoEditPage = () => {
   const location = useLocation();
@@ -17,6 +18,12 @@ const TodoEditPage = () => {
 
   const [priorityType, setPriorityType] = useState("HIGH");
 
+  useEffect(() => {
+    if (userObject.id === undefined) {
+      navigate("/");
+    }
+  }, []);
+
   const saveOperation = () => {
     if (todo.id === undefined) {
       createTodo({
@@ -25,7 +32,7 @@ const TodoEditPage = () => {
             task: todo.task,
             priority: priorityType,
             user: {
-              id: 1,
+              id: userObject?.id,
             },
           },
         },
@@ -42,7 +49,7 @@ const TodoEditPage = () => {
         },
       });
     }
-    navigate("/");
+    navigate("/todos");
   };
 
   const deleteOperation = () => {
@@ -51,7 +58,7 @@ const TodoEditPage = () => {
         id: todo.id,
       },
     });
-    navigate("/");
+    navigate("/todos");
   };
 
   const onClick = (val) => {

@@ -21,3 +21,12 @@ export const GET_USER_BY_ID = gql`
     }
   }
 `;
+
+export const GET_USER_BY_USERNAME = gql`
+  query getUserByUsername($username: String!) {
+    getUserByUsername(username: $username) {
+      id
+      username
+    }
+  }
+`;
