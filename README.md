@@ -14,6 +14,7 @@
 
 [Postman Collection](https://github.com/gurkanucar/todo-app/blob/main/GraphQLTodo.postman_collection.json)
 
+[Live Demo](https://todo-app-ten-mu.vercel.app)
 
 
 ![example](./images/example.gif)

@@ -12,10 +12,13 @@
 - Apollo Client
 
 
+[Postman Collection](https://github.com/gurkanucar/todo-app/blob/main/GraphQLTodo.postman_collection.json)
+
+
 
 ![example](./images/example.gif)
 
-![example](./images/ex1.gif)
+![example](./images/ex1.png)
 
 ![example](./images/ex2.png)
 
