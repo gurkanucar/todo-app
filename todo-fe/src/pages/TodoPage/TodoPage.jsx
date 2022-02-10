@@ -129,18 +129,6 @@ const TodoPage = () => {
         );
       })}
 
-      <p
-        style={{
-          position: "absolute",
-          bottom: "50px",
-          left: "200px",
-          display: "flex",
-          justifyContent: "center",
-          marginTop: "120px",
-        }}
-      >
-        github.com/gurkanucar
-      </p>
     </div>
   );
 };
