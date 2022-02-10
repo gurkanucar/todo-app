@@ -14,12 +14,18 @@ const LoginPage = () => {
 
   const navigate = useNavigate();
 
-  const onClick = () => {
+  const login = () => {
     getUser({
       variables: {
         username: username,
       },
     });
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      login();
+    }
   };
 
   useEffect(() => {
@@ -49,10 +55,13 @@ const LoginPage = () => {
 
   return (
     <div className="login-root-div">
+      <h2 className="login-title">Todo App</h2>
+
       <div className="div-login-input">
         <div className="row-login-input">
           <i className="material-icons">person</i>
           <input
+            onKeyDown={(e) => handleKeyDown(e)}
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -62,7 +71,7 @@ const LoginPage = () => {
         </div>
       </div>
 
-      <div className="login-page-btn-div" onClick={() => onClick()}>
+      <div className="login-page-btn-div" onClick={() => login()}>
         <div className="login-page-btn">
           <div className="button-hint">
             <i className="material-icons">login</i>
